@@ -15,37 +15,29 @@ import java.util.regex.*;
 public class PoisonousPlants {
 
     public static void main(String[] args) {
-        int count = 0;
         Scanner in = new Scanner(System.in);
         int numOfPlants = in.nextInt();
-        List<Integer> garden = new LinkedList<>();
+        int max = 0;
+        Stack<Integer> myStack = new Stack<>();
+        int[] garden = new int[numOfPlants];
         for (int i = 0; i < numOfPlants; i++) {
-            garden.add(in.nextInt());
+            garden[i] = in.nextInt();
         }
-        List<Integer> newGarden = oneDay(garden);
-        while (garden.size() != newGarden.size()) {
-            garden = newGarden;
-            newGarden = oneDay(garden);
-            count++;
-        }
-        System.out.println(count);
-    }
-
-    private static List<Integer> oneDay(List<Integer> garden) {
-        if(garden.size() == 1){
-            return garden;
-        }
-        List<Integer> newGarden = new LinkedList<>();
-        Iterator gardenItr = garden.iterator();
-        newGarden.add((Integer) gardenItr.next());
-        Integer curr = newGarden.get(0);
-        while (gardenItr.hasNext()){
-            Integer nextPlant = (Integer) gardenItr.next();
-            if (curr >= nextPlant){
-                newGarden.add(nextPlant);
+        for (int i = garden.length-1; i >= 0; i--){
+            if(myStack.empty()){
+                myStack.push(garden[i]);
+            } else if (myStack.peek() <= garden[i]){
+                myStack.push(garden[i]);
+            } else {
+                int count = 0;
+                while (!myStack.empty() && myStack.peek() > garden[i]){
+                    myStack.pop();
+                    count++;
+                }
+                myStack.push(garden[i]);
+                max = Math.max(count, max);
             }
-            curr = nextPlant;
         }
-        return newGarden;
+        System.out.println(max);
     }
 }
