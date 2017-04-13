@@ -5,35 +5,28 @@ import java.util.*;
 public class MatrixLayerRotation {
 
     public static void main(String[] args) {
-        int heightOfMatrix, widthOfMatrix, numOfRotations;
-        int[][] matrix;
+
         Scanner in = new Scanner(System.in);
-        heightOfMatrix = in.nextInt();
-        if (heightOfMatrix < 2 || heightOfMatrix > 300)
-            System.exit(1);
-        widthOfMatrix = in.nextInt();
-        if (widthOfMatrix < 2 || widthOfMatrix > 300)
-            System.exit(1);
-        if (Math.min(heightOfMatrix, widthOfMatrix) % 2 != 0)
-            System.exit(3);
-
-        numOfRotations = in.nextInt();
-        if (numOfRotations < 1 || numOfRotations > (int) Math.pow(10, 9))
-            System.exit(2);
-
-        matrix = new int[heightOfMatrix][widthOfMatrix];
-        for (int i = 0; i < heightOfMatrix; i++) {
-            for (int j = 0; j < widthOfMatrix; j++) {
+        int numOfRows = in.nextInt();
+        int numOfColumns = in.nextInt();
+        int numOfRotations = in.nextInt();
+        int[][] matrix = new int[numOfRows][numOfColumns];
+        for (int i = 0; i < numOfRows; i++) {
+            for (int j = 0; j < numOfColumns; j++) {
                 matrix[i][j] = in.nextInt();
-                if (matrix[i][j] < 1 || matrix[i][j] > (int) Math.pow(10, 8))
-                    System.exit(4);
             }
         }
+        System.out.println("The Matrix:");
+        printMatrix(matrix);
 
-        //printMatrix(matrix);
-        //Insert code here
+        matrix = rotateMatrix(matrix, numOfRotations);
+
+        printMatrix(matrix);
+    }
+
+    private static int[][] rotateMatrix(int[][] matrix, int numOfRotations) {
         int circleStart = 0;
-        while (circleStart < Math.min(heightOfMatrix, widthOfMatrix) / 2) {
+        while (circleStart < Math.min(matrix[0].length, matrix.length) / 2) {
             for (int count = 0; count < numOfRotations; count++) {
                 int temp = matrix[circleStart][circleStart];
                 int i = circleStart;
@@ -50,13 +43,13 @@ public class MatrixLayerRotation {
             }
             circleStart++;
         }
-        printMatrix(matrix);
+        return new int[0][];
     }
 
     private static void printMatrix(int[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                System.out.print(matrix[i][j] + " ");
+        for (int[] row : matrix) {
+            for (int number : row) {
+                System.out.printf("%d\t", number);
             }
             System.out.println();
         }
