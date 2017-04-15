@@ -7,7 +7,7 @@ import java.util.Scanner;
  *
  * @author Dominick Martelly
  */
-public class AnotherMinimaxProblem {
+public class YetAnotherMinimaxProblem {
     public static void main(String[] arg) {
         Scanner in = new Scanner(System.in);
         int numOfIntegers = in.nextInt();

@@ -1,14 +1,13 @@
 package HackMay2016;
 
-import java.io.*;
-import java.util.*;
+import java.util.Scanner;
 
 /**
  * Created by Dominick Martelly on 5/17/2016 at 12:21 PM.
  *
  * @author Dominick Martelly
  */
-public class first {
+public class MaximumPerimeterTriangle {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
