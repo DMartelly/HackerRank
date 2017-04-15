@@ -6,23 +6,18 @@ import java.io.*;
 class Solution {
     public static void main(String[] argh) {
         Scanner in = new Scanner(System.in);
-        int n = Integer.parseInt(in.nextLine());
-        PhoneBook myPhoneBook = new PhoneBook();
+        int n = in.nextInt();
+        Map<String, Integer> phoneBook = new HashMap<>();
         for (int i = 0; i < n; i++) {
-            String name = in.nextLine();
-            int number = in.nextInt();
-            in.nextLine();
-            myPhoneBook.put(name, number);
+            phoneBook.put(in.next(), in.nextInt());
         }
         while (in.hasNext()) {
-            System.out.println(myPhoneBook.read(in.nextLine()));
+            String s = in.next();
+            if (!phoneBook.containsKey(s))
+                System.out.println("Not found");
+            else
+                System.out.println(s + "=" + phoneBook.get(s));
         }
         in.close();
-    }
-
-    private static class PhoneBook extends HashMap<String, Integer> {
-        private String read(String name){
-            return this.containsKey(name) ? name + "=" + this.get(name) : "Not found";
-        }
     }
 }
