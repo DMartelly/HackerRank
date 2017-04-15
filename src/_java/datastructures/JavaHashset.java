@@ -1,10 +1,7 @@
 package _java.datastructures;
 
-import java.io.*;
-import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
+import java.util.HashSet;
+import java.util.Scanner;
 
 /**
  * Created by Dominick Martelly on 4/6/2017 at 6:16 PM.
@@ -13,14 +10,14 @@ import java.util.regex.*;
  */
 public class JavaHashset {
     public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
-        int t = s.nextInt();
+        Scanner in = new Scanner(System.in);
+        int t = in.nextInt();
         String[] pair_left = new String[t];
         String[] pair_right = new String[t];
 
         for (int i = 0; i < t; i++) {
-            pair_left[i] = s.next();
-            pair_right[i] = s.next();
+            pair_left[i] = in.next();
+            pair_right[i] = in.next();
         }
         HashSet<String> myHashSet = new HashSet<>();
 
