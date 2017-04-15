@@ -2,7 +2,6 @@ package datastructures.stacks;
 
 import java.io.*;
 import java.util.*;
-import java.util.function.Function;
 
 /**
  * Created by Dominick Martelly on 4/14/2017 at 8:35 PM.
@@ -28,7 +27,7 @@ public class ANDxorOR {
         }
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < array.length; i++) {
-            for (int j = i + 2; j < array.length; j++) {
+            for (int j = i + 2; j < array.length + 1; j++) {
                 max = Math.max(max, function(twoSmallest(Arrays.copyOfRange(array,i,j))));
             }
         }
@@ -38,6 +37,9 @@ public class ANDxorOR {
     private static Tuple twoSmallest(int[] array) {
         if (array.length < 2){
             throw new IllegalArgumentException("The array needs to be greater than 1");
+        }
+        if (array.length == 2){
+            return new Tuple(array[0], array[1]);
         }
         int smallest, secondSmallest;
         smallest = Math.min(array[0], array[1]);
