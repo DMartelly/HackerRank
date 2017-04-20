@@ -1,10 +1,7 @@
 package datastructures.stacks;
 
-import java.io.*;
-import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
+import java.util.Scanner;
+import java.util.Stack;
 
 /**
  * Created by Dominick Martelly on 4/11/2017 at 6:20 PM.
