@@ -4,7 +4,7 @@ import java.util.*;
 
 public class MatrixLayerRotation {
 
-    private static class Location{
+    private static class Location {
         int x;
         int y;
 
@@ -21,21 +21,32 @@ public class MatrixLayerRotation {
             return y;
         }
     }
+
     public static void main(String[] args) {
 
-        Scanner in = new Scanner(System.in);
-        int numOfRows = in.nextInt();
-        int numOfColumns = in.nextInt();
-        int numOfRotations = in.nextInt();
-        int[][] matrix = new int[numOfRows][numOfColumns];
-        for (int i = 0; i < numOfRows; i++) {
-            for (int j = 0; j < numOfColumns; j++) {
-                matrix[i][j] = in.nextInt();
+        int numOfRows;
+        int numOfColumns;
+        int numOfRotations;
+        int[][] matrix;
+        if (args[0].equals("0")) {
+            numOfRotations = 1;
+            matrix = new int[][]{{0}};
+        } else {
+            Scanner in = new Scanner(System.in);
+            numOfRows = in.nextInt();
+            numOfColumns = in.nextInt();
+            numOfRotations = in.nextInt();
+            matrix = new int[numOfRows][numOfColumns];
+            for (int i = 0; i < numOfRows; i++) {
+                for (int j = 0; j < numOfColumns; j++) {
+                    matrix[i][j] = in.nextInt();
+                }
             }
+            in.close();
         }
         System.out.println("The Matrix:");
         printMatrix(matrix);
-        System.out.println("\nThe Matrix Rotated " + numOfRotations +" Times:");
+        System.out.println("\nThe Matrix Rotated " + numOfRotations + " Times:");
         printMatrix(rotateMatrix(matrix, numOfRotations));
     }
 
@@ -71,6 +82,24 @@ public class MatrixLayerRotation {
     }
 
     private static Location algorithm(int i, int j, int length, int length1, int numOfRotations) {
+        //Todo: Find the layer the point belongs to
+        Integer layer = 0;
+        int lLength = length;
+        int hLength = length1;
+        while (true) {
+            if (i == lLength || i == layer || j == hLength || j == layer) {
+                break;
+            } else if (lLength == layer || hLength == layer) {
+                //Error
+                return new Location(-1, -1);
+            } else {
+                layer++;
+                lLength--;
+                hLength--;
+            }
+        }
+
+
         return new Location(i, j);
     }
 
