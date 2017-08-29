@@ -6,6 +6,8 @@ import java.util.Stack;
 /**
  * Created by Dominick on 8/29/2017.
  *
+ * Balanced parentheses
+ *
  * @author Dominick
  */
 public class JavaStack {
@@ -24,14 +26,14 @@ public class JavaStack {
         Stack<Character> stack = new Stack<>();
         for (char c : input.toCharArray()) {
             if (isClosing(c)) {
-                if (stack.isEmpty() || !isPair(c, stack.pop())) {
+                if (stack.isEmpty() || !isPair(stack.pop(), c)) {
                     return false;
                 }
             } else {
                 stack.push(c);
             }
         }
-        return true;
+        return stack.isEmpty();
     }
 
     private static boolean isClosing(char input) {
@@ -52,7 +54,7 @@ public class JavaStack {
             case 91:
                 return c2 == 93;
             case 123:
-                return c2 == 93;
+                return c2 == 125;
             default:
                 return false;
         }
