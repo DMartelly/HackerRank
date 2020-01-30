@@ -1,10 +1,8 @@
 package SnakesAndLadders;
 
-import com.sun.deploy.util.ArrayUtil;
-
-import java.io.*;
-import java.lang.reflect.Array;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * Created by Dominick Martelly on 5/16/2016 at 1:18 PM.
